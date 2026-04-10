@@ -3,9 +3,11 @@ name: Build and Publish Devcontainer
 on:
   push:
     branches: [ "main" ]
-    # Optional: Only run if the Dockerfile changes
     paths:
       - 'Dockerfile'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-push:
@@ -30,5 +32,4 @@ jobs:
         with:
           context: .
           push: true
-          # This tags the image as ghcr.io/vyse-dx/<repo-name>:latest
           tags: ghcr.io/${{ github.repository }}:latest

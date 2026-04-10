@@ -1,0 +1,34 @@
+name: Build and Publish Devcontainer
+
+on:
+  push:
+    branches: [ "main" ]
+    # Optional: Only run if the Dockerfile changes
+    paths:
+      - 'Dockerfile'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # This tags the image as ghcr.io/vyse-dx/<repo-name>:latest
+          tags: ghcr.io/${{ github.repository }}:latest

@@ -18,6 +18,7 @@ RUN add-apt-repository ppa:ondrej/php -y \
     php8.5-cli \
     php8.5-curl \
     php8.5-mbstring \
+    php8.5-pgsql \
     php8.5-xml \
     php8.5-zip \
     php8.5-xdebug \

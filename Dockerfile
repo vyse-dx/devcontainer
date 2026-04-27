@@ -23,6 +23,7 @@ RUN add-apt-repository ppa:ondrej/php -y \
     php8.5-zip \
     php8.5-xdebug \
     php8.5-sqlite3 \
+    watchman \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
